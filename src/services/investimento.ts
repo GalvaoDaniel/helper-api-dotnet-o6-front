@@ -3,16 +3,16 @@ import {
   CalcularInvestimentoRequest,
   CalcularInvestimentoResponse,
   ObterCdiAtualResponse,
-} from "../components/types/rendimento";
+} from "../types/rendimento";
 
-const API_URL = "http://localhost:5156/investimento/v1";
+const API_URL = "https://localhost:7273/investimento/v1";
 
 export const calcularInvestimento = async (
   calcularRendimento: CalcularInvestimentoRequest
-): Promise<CalcularInvestimentoResponse[]> => {
+): Promise<CalcularInvestimentoResponse> => {
   try {
     const action = "calcular-investimentos";
-    const response: AxiosResponse<CalcularInvestimentoResponse[]> =
+    const response: AxiosResponse<CalcularInvestimentoResponse> =
       await axios.post(`${API_URL}/${action}`, calcularRendimento);
     return response.data;
   } catch (error) {

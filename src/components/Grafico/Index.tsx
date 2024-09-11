@@ -1,6 +1,6 @@
 import React from "react";
 import { Chart } from "react-google-charts";
-import { CalcularInvestimentoResponse } from "../../pages/Home/Index";
+import { DadosGrafico } from "../../types/rendimento";
 
 const options = {
   title: "Rendimento de CDI, IPCA e Selic ao Longo do Tempo",
@@ -10,7 +10,7 @@ const options = {
   legend: { position: "bottom" },
 };
 
-const Grafico: React.FC<{dadosGrafico: CalcularInvestimentoResponse[]}> = ({dadosGrafico}) => {
+const Grafico: React.FC<{dadosGrafico: DadosGrafico[]}> = ({dadosGrafico}) => {
   const chartData = [
     ["Mês", "CDI", "IPCA", "Selic"],
     ...dadosGrafico.map((dados) => [

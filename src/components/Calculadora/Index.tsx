@@ -11,7 +11,7 @@ import { InputAdornment } from "@mui/material";
 import {
   CalcularInvestimentoRequest,
   ObterCdiAtualResponse,
-} from "../types/rendimento";
+} from "../../types/rendimento";
 
 interface CalculadoraProps {
   onConfirm: (values: CalcularInvestimentoRequest) => void;

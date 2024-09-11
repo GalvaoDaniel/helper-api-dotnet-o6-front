@@ -16,14 +16,14 @@ import {
   CalcularInvestimentoRequest,
   CalcularInvestimentoResponse,
   ObterCdiAtualResponse,
-} from "../../components/types/rendimento";
+} from "../../types/rendimento";
+import TabelaDados from "../../components/TabelaDados/Index";
 
 const Home: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [dadosGrafico, setDadosGrafico] = useState<
-    CalcularInvestimentoResponse[]
-  >([]);
+  const [dadosGrafico, setDadosGrafico] =
+    useState<CalcularInvestimentoResponse>();
   const [valosCdi, setValoresCdi] = useState<ObterCdiAtualResponse>();
 
   const onConfirm = (data: CalcularInvestimentoRequest) => {
@@ -36,6 +36,7 @@ const Home: React.FC = () => {
       try {
         const calculo = await apiInvestimento.calcularInvestimento(data);
         if (calculo) setDadosGrafico(calculo);
+        setErrorMessage("");
       } catch (error) {
         setErrorMessage("Ocorreu um erro, tente novamente.");
         console.error(error);
@@ -81,14 +82,17 @@ const Home: React.FC = () => {
         </Typography>
       )}
       <Box my={8}>
-        <Divider />
         {loading && (
           <Typography component="div" key={"h1"} variant={"h1"}>
             <Skeleton />
           </Typography>
         )}
-        {dadosGrafico && dadosGrafico.length > 0 && (
-          <Grafico dadosGrafico={dadosGrafico} />
+        {dadosGrafico && dadosGrafico.dadosGrafico.length > 0 && (
+          <>
+            <Grafico dadosGrafico={dadosGrafico.dadosGrafico} />
+            <Divider />
+            <TabelaDados dadosTaxas={dadosGrafico}></TabelaDados>
+          </>
         )}
       </Box>
     </Box>
