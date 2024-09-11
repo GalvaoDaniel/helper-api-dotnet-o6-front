@@ -5,7 +5,7 @@ import {
   ObterCdiAtualResponse,
 } from "../components/types/rendimento";
 
-const API_URL = "https://localhost:7273/investimento/v1";
+const API_URL = "http://localhost:5156/investimento/v1";
 
 export const calcularInvestimento = async (
   calcularRendimento: CalcularInvestimentoRequest
